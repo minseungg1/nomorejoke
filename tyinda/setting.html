@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>프로필 화면</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+<style>
+    body { 
+        font-family: Arial, sans-serif; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+        margin: 0;
+        background-color: #f4f4f4; /* 배경색 추가 */
+    }
+    .container { 
+        width: 320px; /* 컨테이너 너비 조정 */
+        position: relative; 
+        background: white; 
+        border-radius: 10px; 
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    }
+    .back-btn { 
+        position: absolute; 
+        top: 20px; 
+        left: 20px; /* 화살표 버튼을 원래 위치로 복구 */
+        background: #3753FF; /* 버튼 배경색 */
+        border: none; 
+        font-size: 16px; /* 아이콘 크기 조정 */
+        cursor: pointer; 
+        color: white; /* 글자색 하얀색 */
+        width: 30px; /* 버튼의 너비 */
+        height: 30px; /* 버튼의 높이 */
+        border-radius: 50%; /* 원형 배경 */
+        display: flex; /* 아이콘을 가운데로 정렬 */
+        align-items: center; 
+        justify-content: center; 
+    }
+    .profile-picture { 
+        display: flex; 
+        justify-content: center; 
+        flex-direction: column; 
+        align-items: center; 
+        margin-bottom: 20px; 
+    }
+    .profile-button { 
+        width: 80px; /* 동그라미의 너비 조정 */
+        height: 80px; /* 동그라미의 높이 조정 */
+        border-radius: 50%; 
+        background-color: #f0f0f0; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 36px; /* 아이콘 크기 조정 */
+        color: #bbb; 
+        border: 3px solid black; 
+        border: none; /* 버튼 테두리 제거 */
+        cursor: pointer; /* 커서 모양을 포인터로 변경 */
+        outline: none; /* 포커스 시 아웃라인 제거 */
+    }
+    .nickname-btn { 
+        font-weight: bold; 
+        margin-top: 10px; 
+        padding: 8px 16px; 
+        border: none; 
+        background-color: white; /* 버튼 배경색 하얀색 */
+        color: black; /* 글자색 검은색 */
+        border-radius: 5px; 
+        cursor: pointer; 
+        text-align: center; 
+        display: inline-block;
+        text-decoration: none; /* 링크 스타일 제거 */
+    }
+    .input-group { 
+        margin-bottom: 15px; 
+        position: relative; 
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+        width: calc(100% - 30px); /* 박스의 가로 길이를 더 길게 조정 */
+        padding-right: 50px; /* 오른쪽 여백을 늘림 */
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #ddd; /* 테두리 추가 */
+    }
+    .vertical-line {
+        position: absolute;
+        height: 30px;
+        width: 2px;
+        background-color: #ccc;
+        left: 55px; /* 세로 줄을 조금 오른쪽으로 이동 */
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .btn { 
+        position: absolute; 
+        right: 20px; /* 버튼 위치를 오른쪽으로 이동 */
+        top: 5px; 
+        bottom: 5px; 
+        background-color: #3753FF; /* 버튼 배경색 */
+        color: white; /* 글자색 하얀색 */
+        border: none; 
+        border-radius: 8px; 
+        padding: 5px 10px; 
+        cursor: pointer; 
+    }
+    .build-info { 
+        text-align: center; 
+        font-size: 12px; 
+        margin-top: 20px; 
+    }
+    .logout-btn { 
+        width: 100%; 
+        margin-top: 30px; 
+        background-color: #3753FF; /* 버튼 배경색 */
+        color: white; /* 글자색 하얀색 */
+        border: none; 
+        border-radius: 8px; 
+        padding: 10px; 
+        cursor: pointer; 
+        text-align: center;
+        display: block;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <button class="back-btn" onclick="window.location.href='some-other-page.html'"> <!-- 다른 페이지로 이동하도록 변경 -->
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    <div class="profile-picture">
+        <button class="profile-button" onclick="window.location.href='profilepage.html'">
+            <i class="fas fa-user"></i>
+        </button>
+        <button class="nickname-btn" onclick="window.location.href='nextpage.html'">NICKNAME</button>
+    </div>
+    <div class="input-group">
+        <input type="text" placeholder="이름">
+        <div class="vertical-line"></div>
+    </div>
+    <div class="input-group">
+        <input type="text" placeholder="전화">
+        <div class="vertical-line"></div>
+        <button class="btn" onclick="window.location.href='change-phone.html'">인증</button>
+    </div>
+    <div class="input-group">
+        <input type="email" placeholder="이메일">
+        <div class="vertical-line"></div>
+        <button class="btn" onclick="window.location.href='change-email.html'">인증</button>
+    </div>
+    <div class="input-group">
+        <input type="text" placeholder="ID">
+        <div class="vertical-line"></div>
+    </div>
+    <div class="input-group">
+        <input type="password" placeholder="PW">
+        <div class="vertical-line"></div>
+        <i class="fas fa-pencil-alt btn" onclick="window.location.href='change-password.html'"></i>
+    </div>
+    <button class="logout-btn" onclick="window.location.href='logoutpage.html'">로그아웃</button>
+    <div class="build-info">
+        Build: 123.13413.213<br>
+        Version: 13.beta
+    </div>
+</div>
+</body>
+</html>
+
