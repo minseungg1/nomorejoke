@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>post</title>
+    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="post.css" />
+  </head>
+  <body>
+    <!-- 헤더 영역: 사용자 프로필, 해시태그, 검색 바 -->
+    <header>
+      <img class="toplogo" src="./예소 피그마/icon/logo.png" alt="로고" />
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main>
+      <div class="post">
+        <div class="post-header">
+          <div class="profile">
+            <div class="profile-img"></div>
+            <span class="username">사용자 명</span>
+          </div>
+        </div>
+        <div class="author-info">
+          <span class="text-time">?시간 전 · 지역</span>
+        </div>
+        <div class="post-image">~ 멋진 사진 ~</div>
+        <div class="post-footer">
+          <div class="tags">
+            <div class="tags-left">
+              <span class="tag">#관심 필터</span>
+              <span class="tag">#관심 필터</span>
+            </div>
+            <div class="tags-right">
+              <span class="post-icon">
+                <img
+                  class="like-button"
+                  src="./예소 피그마/icon/like.png"
+                  alt="좋아요아이콘"
+                  onclick="toggleIcon(this, './예소 피그마/icon/like_clicked.png', './예소 피그마/icon/like.png')"
+                />
+              </span>
+              <span class="post-icon">
+                <img
+                  class="stored-button"
+                  src="./예소 피그마/icon/store.png"
+                  alt="저장됨아이콘"
+                  onclick="toggleIcon(this, './예소 피그마/icon/stored.png', './예소 피그마/icon/store.png')"
+                />
+              </span>
+            </div>
+          </div>
+          <span class="content"
+            >인스타처럼 글 쓰는 칸 예비용: 설명 안녕 클레오 파트라 세상에서
+            제일가는 포테이토 칩
+            ㄴ이ㅓ라ㅣ너ㅣㅏ너리ㅏㅓㄹ더재ㅓ자러ㅣ넝리ㅏ너러fsdfs댜ㅐㅓㅈ리ㅏ절</span
+          >
+          <hr />
+          <span class="comment"
+            >와 정말 방문해보고 싶은 여행지네요! 안녕 클레오 파트라 세상에서
+            제일가는 포테이토칩 안녕 클레오 파트라 세상에서 제일가는 포테이토
+            칩</span
+          >
+        </div>
+      </div>
+    </main>
+    <!-- 하단 네비게이션 바 -->
+    <footer>
+      <div class="footer-menu">
+        <a href="./home.html" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="./예소 피그마/icon/home.png"
+            alt="홈아이콘"
+          />
+        </a>
+        <span>홈</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./save.html" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="./예소 피그마/icon/save.png"
+            alt="저장됨아이콘"
+          />
+        </a>
+        <span>저장됨</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./write.html" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="./예소 피그마/icon/write.png"
+            alt="글쓰기아이콘"
+          />
+        </a>
+        <span>글쓰기</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./my.html" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="./예소 피그마/icon/my.png"
+            alt="내여행아이콘"
+          />
+        </a>
+        <span>내 여행</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./setting.html" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="./예소 피그마/icon/setting.png"
+            alt="설정아이콘"
+          />
+        </a>
+        <span>설정</span>
+      </div>
+    </footer>
+    <script>
+      function toggleIcon(element, newSrc, originalSrc) {
+        const currentSrc = element.src.split("/").pop(); // 현재 src의 파일명만 추출
+        const newSrcFile = newSrc.split("/").pop(); // 새로운 이미지의 파일명만 추출
+        const originalSrcFile = originalSrc.split("/").pop(); // 원래 이미지의 파일명만 추출
+
+        if (currentSrc === newSrcFile) {
+          element.src = originalSrc; // 원래 이미지로 변경
+        } else {
+          element.src = newSrc; // 새로운 이미지로 변경
+        }
+      }
+    </script>
+  </body>
+</html>
