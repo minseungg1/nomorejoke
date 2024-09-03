@@ -1,0 +1,46 @@
+.character-image-section .box {
+    height: 300px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    object-fit: cover;
+}
+
+.image {
+    width: 100%;
+    height: 100%; /* 원하는 높이로 설정 */
+    background-image: url(./image/character/캐릭터.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.character-image-section {
+    margin-bottom: 20px;
+}
+
+.straw {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.reset-button,
+.apply-button {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.reset-button {
+    background-color: #f2f2f2;
+    color: #000;
+}
+
+.apply-button {
+    background-color: #000;
+    color: #fff;
+}
