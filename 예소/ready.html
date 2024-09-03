@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>준비 완료!</title>
+    <link rel="stylesheet" href="ready.css">
+</head>
+<body>
+    <div class="container">
+        <div class="character-container">
+            <img src="line.png" alt="캐릭터" class="character" id="characterImage">
+        </div>
+        <div class="text-container">
+            <h1>준비 완료!</h1>
+        </div>
+        <button class="home-button" onclick="location.href='check.html'">홈으로 가기</button>
+    </div>
+
+    <script>
+        const images = ["character_1.png", "character_2.png", "character_3.png", "character_4.png", "character_5.png"];
+        let currentIndex = 0;
+        const characterImage = document.getElementById('characterImage');
+
+        function changeImage() {
+            // 페이드 아웃
+            characterImage.classList.add('fade-out');
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                characterImage.src = images[currentIndex];
+                // 페이드 인
+                characterImage.classList.remove('fade-out');
+                characterImage.classList.add('fade-in');
+            }, 500); // 이미지 교체 전에 페이드 아웃 시간과 일치하도록 설정
+        }
+
+        setInterval(changeImage, 1000); // 2초 간격으로 이미지 변경 (페이드 인/아웃 포함)
+    </script>
+</body>
+</html>

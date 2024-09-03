@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기 결과</title>
+    <link rel="stylesheet" href="id.css">
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Tinda Logo" class="logo">
+        
+        <div class="result">
+            <p>당신의 아이디는 <span id="user-id">wedeljoke</span> 입니다.</p>
+        </div>
+        
+        <button class="login-button" onclick="location.href='login.html'">로그인하러 가기</button>
+        
+        <div class="find-password">
+            <a href="find_pw.html">비밀번호 찾기</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript 변수를 통해 아이디를 동적으로 변경
+        const userId = 'wedeljoke';  // 이 부분에 실제 변수 값을 넣어야 함
+        document.getElementById('user-id').textContent = userId;
+    </script>
+</body>
+</html>

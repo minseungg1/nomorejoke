@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <img src="./profile.png" alt="Profile Image" class="profile-image">
+                <span class="username">사용자 명</span>
+            </div>
+            <input type="text" class="search-bar" placeholder="‘000’을 검색해보세요">
+            <button class="clear-button" onclick="clearSearch()">X</button>
+        </div>
+
+        <div class="tab-menu">
+            <button class="tab active">전체</button>
+            <button class="tab">Label</button>
+            <button class="tab">Label</button>
+            <button class="tab">Label</button>
+            <button class="tab">Label</button>
+        </div>
+
+        <div class="popular-posts">
+            <h2>인기 게시글</h2>
+            <div class="post-card">
+                <span>지역명 표시</span>
+                <div class="image-placeholder">~ 멋진 사진 ~</div>
+                
+            </div>
+            <div class="post-card">
+                <span>지역명 표시</span>
+                <div class="image-placeholder">~ 멋진 사진 ~</div>
+                
+            </div>
+        </div>
+
+        <div class="recommended-posts">
+            <h2>추천 게시물</h2>
+            <div class="post-list">
+                <div class="post-item">
+                    <div class="post-header">
+                        <span class="post-author">작성자 명</span>
+                        <span class="post-time">N시간 전 · 지역</span>
+                    </div>
+                    <div class="image-placeholder">~ 멋진 사진 ~</div>
+                    <div class="post-footer">
+                        <span>#관심 필터</span>
+                        <span>#관심 필터</span>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="post-header">
+                        <span class="post-author">작성자 명</span>
+                        <span class="post-time">N시간 전 · 지역</span>
+                    </div>
+                    <div class="image-placeholder">~ 멋진 사진 ~</div>
+                    <div class="post-footer">
+                        <span>#관심 필터</span>
+                        <span>#관심 필터</span>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="post-header">
+                        <span class="post-author">작성자 명</span>
+                        <span class="post-time">N시간 전 · 지역</span>
+                    </div>
+                    <div class="image-placeholder">~ 멋진 사진 ~</div>
+                    <div class="post-footer">
+                        <span>#관심 필터</span>
+                        <span>#관심 필터</span>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="post-header">
+                        <span class="post-author">작성자 명</span>
+                        <span class="post-time">N시간 전 · 지역</span>
+                    </div>
+                    <div class="image-placeholder">~ 멋진 사진 ~</div>
+                    <div class="post-footer">
+                        <span>#관심 필터</span>
+                        <span>#관심 필터</span>
+                    </div>
+                </div>
+                <div class="post-item">
+                    <div class="post-header">
+                        <span class="post-author">작성자 명</span>
+                        <span class="post-time">N시간 전 · 지역</span>
+                    </div>
+                    <div class="image-placeholder">~ 멋진 사진 ~</div>
+                    <div class="post-footer">
+                        <span>#관심 필터</span>
+                        <span>#관심 필터</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+      <div class="footer-menu">
+        <a href="./write.html" class="post-link">
+          <img class="footer-menu-icon" src="C:/Users/jeach/Desktop/예소/write.png" alt="글쓰기아이콘"/>
+        </a>
+        <span>글쓰기</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./save.html" class="post-link">
+          <img class="footer-menu-icon" src="C:/Users/jeach/Desktop/예소/save.png" alt="저장됨아이콘"/>
+        </a>
+        <span>저장됨</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./home.html" class="post-link">
+          <img class="footer-menu-icon" src="C:/Users/jeach/Desktop/예소/home.png" alt="홈아이콘"/>
+        </a>
+        <span>홈</span>
+      </div>
+      
+      <div class="footer-menu">
+        <a href="./my.html" the="post-link">
+          <img class="footer-menu-icon" src="C:/Users/jeach/Desktop/예소/my.png" alt="내여행아이콘"/>
+        </a>
+        <span>내 여행</span>
+      </div>
+      <div class="footer-menu">
+        <a href="./setting.html" class="post-link">
+          <img class="footer-menu-icon" src="C:/Users/jeach/Desktop/예소/setting.png" alt="설정아이콘"/>
+        </a>
+        <span>설정</span>
+      </div>
+    </footer>
+
+    <script src="home.js"></script>
+</body>
+</html>

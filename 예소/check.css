@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    background-color: #F3F5FF; /* Match the background color of the login-container */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    height: 90vh; /* Set to match the login-container height */
+    text-align: center; /* Align text center like login-container */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center contents vertically */
+    align-items: center; /* Center contents horizontally */
+    gap: 20px; /* Space between elements */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+    order: 1;
+}
+
+.coin-container {
+    display: flex;
+    align-items: center;
+    order: 2;
+}
+
+.coin-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+#coin-count {
+    font-size: 20px;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    width: 100%;
+    margin-top: 10px;
+    transform: translateX(-10px); /* Shift the entire calendar to the left */
+}
+
+.day {
+    width: 50px;
+    height: 70px;
+    background-image: url('C:/Users/jeach/Desktop/예소/character_1.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 14px;
+    color: #3753FF;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.day.checked {
+    background-image: url('C:/Users/jeach/Desktop/예소/character_.png');
+    background-size: cover;
+    color: transparent;
+}
+
+#watch-ad-btn {
+    width: 80%; /* Adjust to match the login button width */
+    padding: 15px 0;
+    background-color: #3753FF;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Match the login button's border-radius */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, color 0.3s; /* Match the hover effect */
+    border: 1px solid #3753FF;
+}
+
+#watch-ad-btn:hover {
+    background-color: white;
+    color: #3753FF;
+    border: 1px solid #3753FF;
+}
+
+#watch-ad-btn:active {
+    background-color: #1a2b99;
+}

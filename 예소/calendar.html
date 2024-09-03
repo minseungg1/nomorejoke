@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출석 달력</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .calendar-container {
+            text-align: center;
+        }
+
+        .calendar-header {
+            margin-bottom: 10px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+            width: 300px;
+        }
+
+        .day {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .day:hover {
+            background-color: #f0f0f0;
+        }
+
+        .stamped {
+            background-color: #ffeb3b;
+        }
+
+        .stamp {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            top: 5px;
+            right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button onclick="changeMonth(-1)">이전 달</button>
+            <span id="month-year"></span>
+            <button onclick="changeMonth(1)">다음 달</button>
+        </div>
+        <div class="calendar" id="calendar"></div>
+    </div>
+
+    <script>
+        const calendarElement = document.getElementById('calendar');
+        const monthYearElement = document.getElementById('month-year');
+        let currentDate = new Date();
+
+        function renderCalendar(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth();
+
+            // 해당 월의 첫째 날과 마지막 날 계산
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+
+            // 달력 헤더 업데이트
+            monthYearElement.textContent = `${year}년 ${month + 1}월`;
+
+            // 달력 초기화
+            calendarElement.innerHTML = '';
+
+            // 달력 날짜 생성
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('day');
+                dayElement.textContent = day;
+                dayElement.addEventListener('click', function() {
+                    if (this.classList.contains('stamped')) {
+                        this.classList.remove('stamped');
+                        this.innerHTML = this.innerHTML.replace('✔️', '');
+                    } else {
+                        this.classList.add('stamped');
+                        this.innerHTML += '<span class="stamp">✔️</span>';
+                    }
+                });
+                calendarElement.appendChild(dayElement);
+            }
+        }
+
+        function changeMonth(monthDelta) {
+            currentDate.setMonth(currentDate.getMonth() + monthDelta);
+            renderCalendar(currentDate);
+        }
+
+        // 초기 달력 렌더링
+        renderCalendar(currentDate);
+    </script>
+</body>
+</html>
