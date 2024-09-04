@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 기록 공유</title>
+    <link rel="stylesheet" href="./write.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>글쓰기</h1>
+        </header>
+        <section class="title-section">
+            <div class="image-upload">
+                <form class="inputImg" method="post" enctype="multipart/form-data">
+                    <div class="addImage" id="image-show">
+                    </div>
+                    <input type="file" accept="image/*" onchange="loadFile(this)">
+                </form>
+            </div>
+            <textarea placeholder="여기에 내용을 입력하세요..."></textarea>
+        </section>
+        <section class="filter-section">
+            <h3>관심사 설정</h3>
+            <div class="homeTags">
+                <button id="age-button" onclick="openModal('age-modal')">나이대</button>
+                <button id="gender-button" onclick="openModal('gender-modal')">성별</button>
+                <button id="travel-type-button" onclick="openModal('travel-type-modal')">여행 유형</button>
+            </div>
+            <div class="tags">
+                <button id="region-button" onclick="openModal('region-modal')">지역</button>
+                <button id="cost-button" onclick="openModal('cost-modal')">비용</button>
+                <button id="relationship-button" onclick="openModal('relationship-modal')">관계</button>
+            </div>
+            <p>당신의 여행에 맞는 관심사를 설정하여 주세요</p>
+        </section>
+        <section class="recommendations">
+            <h3>~ 나도 다녀왔어요 ~</h3>
+            <div class="recommendation-cards">
+                <div class="card">
+                    <img src="./image/character/캐릭터.png" alt="멋진 사진" class="card-img">
+                    <div class="card-content">
+                        <p class="review">한줄 후기: 정말 멋진 곳이었어요!</p>
+                        <p class="location">서울, 2박 3일</p>
+                        <p class="author">작성자: 홍길동</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./image/character/캐릭터.png" alt="멋진 사진" class="card-img">
+                    <div class="card-content">
+                        <p class="review">한줄 후기: 맛집이 정말 많아요.</p>
+                        <p class="location">대전, 당일치기</p>
+                        <p class="author">작성자: 김철수</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="actions">
+            <button class="upload-btn">글 업로드하기</button>
+        </section>
+        <section class="hashtags">
+            <h3>인기 해시태그</h3>
+            <div class="homeTags">
+                <button>나이대</button>
+                <button>성별</button>
+                <button>여행 유형</button>
+            </div>
+            <div class="tags">
+                <button>지역</button>
+                <button>비용</button>
+                <button>관계</button>
+            </div>
+        </section>
+        <section class="bottom"></section>
+    </div>
+    <footer>
+        <a href="./write.html">
+          <div class="footer-menu">
+            <img src="./image/icon/write.png" alt="글쓰기 아이콘" />
+            <span>글쓰기</span>
+          </div>
+        </a>
+        <a href="./save.html">
+          <div class="footer-menu">
+            <img src="./image/icon/save.png" alt="저장됨아이콘" />
+            <span>저장됨</span>
+          </div>
+        </a>
+        <a href="./home.html">
+          <div class="footer-menu">
+            <img src="./image/icon/home.png" alt="홈 아이콘" />
+            <span>홈</span>
+          </div>
+        </a>
+        <a href="./my.html">
+          <div class="footer-menu">
+            <img src="./image/icon/my.png" alt="내여행 아이콘" />
+            <span>내 여행</span>
+          </div>
+        </a>
+        <a href="./setting.html">
+          <div class="footer-menu">
+            <img src="./image/icon/setting.png" alt="설정아이콘" />
+            <span>설정</span>
+          </div>
+        </a>
+    </footer>
+
+    <!-- 모달 영역 시작 -->
+    <div id="age-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('age-modal')">&times;</span>
+            <h2>나이대 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('age-button', '10대')"> 10대</label><br>
+            <label><input type="checkbox" onclick="selectOption('age-button', '20대')"> 20대</label><br>
+            <label><input type="checkbox" onclick="selectOption('age-button', '30대')"> 30대</label><br>
+            <label><input type="checkbox" onclick="selectOption('age-button', '40대')"> 40대</label><br>
+            <label><input type="checkbox" onclick="selectOption('age-button', '50대 이상')"> 50대 이상</label><br>
+        </div>
+    </div>
+
+    <div id="gender-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('gender-modal')">&times;</span>
+            <h2>성별 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('gender-button', '남성')"> 남성</label><br>
+            <label><input type="checkbox" onclick="selectOption('gender-button', '여성')"> 여성</label><br>
+            <label><input type="checkbox" onclick="selectOption('gender-button', '기타')"> 기타</label><br>
+        </div>
+    </div>
+
+    <div id="travel-type-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('travel-type-modal')">&times;</span>
+            <h2>여행 유형 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('travel-type-button', '자연 친화형')"> 자연 친화형</label><br>
+            <label><input type="checkbox" onclick="selectOption('travel-type-button', '문화 탐방형')"> 문화 탐방형</label><br>
+            <label><input type="checkbox" onclick="selectOption('travel-type-button', '휴식과 힐링형')"> 휴식과 힐링형</label><br>
+            <label><input type="checkbox" onclick="selectOption('travel-type-button', '모험과 액티비티형')"> 모험과 액티비티형</label><br>
+            <label><input type="checkbox" onclick="selectOption('travel-type-button', '기타')"> 기타</label><br>
+        </div>
+    </div>
+
+    <div id="region-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('region-modal')">&times;</span>
+            <h2>지역 선택</h2>
+            <button onclick="openSubRegionModal('seoul-modal')">아시아</button><br>
+            <button onclick="openSubRegionModal('busan-modal')">유럽</button><br>
+            <button onclick="openSubRegionModal('jeju-modal')">아프리카</button><br>
+            <button onclick="openSubRegionModal('daejeon-modal')">북미</button><br>
+            <button onclick="openSubRegionModal('other-modal')">남미</button><br>
+        </div>
+    </div>
+
+    <!-- 서울 세분화 모달 -->
+    <div id="seoul-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('seoul-modal')">&times;</span>
+            <h2>아시아 세부 지역 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아시아 - 한국')"> 한국</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아시아 - 중국')"> 중국</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아시아 - 일본')"> 일본</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아시아 - 태국')"> 태국</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아시아 - 베트남')"> 베트남</label><br>
+        </div>
+    </div>
+
+    <!-- 부산 세분화 모달 -->
+    <div id="busan-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('busan-modal')">&times;</span>
+            <h2>부산 세부 지역 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('region-button', '유럽 - 프랑스')"> 프랑스</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '유럽 - 영국')"> 영국</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '유럽 - 이탈리아')"> 이탈리아</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '유럽 - 스페인')"> 스페인</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '유럽 - 스위스')"> 스위스</label><br>
+        </div>
+    </div>
+
+    <!-- 제주 세분화 모달 -->
+    <div id="jeju-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('jeju-modal')">&times;</span>
+            <h2>제주 세부 지역 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아프리카 - 남아공')"> 남아공</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아프리카 - 우간다')"> 우간다</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아프리카 - 콩고')"> 콩고</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아프리카 - 말리')"> 말리</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '아프리카 - 가나')"> 가나</label><br>
+        </div>
+    </div>
+
+    <!-- 대전 세분화 모달 -->
+    <div id="daejeon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('daejeon-modal')">&times;</span>
+            <h2>대전 세부 지역 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('region-button', '북미 - 미국')"> 미국</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '북미 - 캐나다')"> 캐나다</label><br>
+        </div>
+    </div>
+
+    <!-- 기타 세분화 모달 -->
+    <div id="other-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('other-modal')">&times;</span>
+            <h2>기타 지역 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('region-button', '남미 - 아르헨티나')"> 아르헨티나</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '남미 - 멕시코')"> 멕시코</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '남미 - 브라질')"> 브라질</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '남미 - 자메이카')"> 자메이카</label><br>
+            <label><input type="checkbox" onclick="selectOption('region-button', '오세아니아 - 호주')"> 호주</label><br>
+        </div>
+    </div>
+
+    <!-- 비용 모달 -->
+    <div id="cost-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cost-modal')">&times;</span>
+            <h2>비용 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('cost-button', '0-10만원')"> 0-10만원</label><br>
+            <label><input type="checkbox" onclick="selectOption('cost-button', '10만원-50만원')"> 10만원-50만원</label><br>
+            <label><input type="checkbox" onclick="selectOption('cost-button', '50만원-100만원')"> 50만원-100만원</label><br>
+            <label><input type="checkbox" onclick="selectOption('cost-button', '100만원-500만원')"> 100만원-500만원</label><br>
+            <label><input type="checkbox" onclick="selectOption('cost-button', '500만원-1000만원')"> 500만원-1000만원</label><br>
+        </div>
+    </div>
+
+    <!-- 관계 모달 -->
+    <div id="relationship-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('relationship-modal')">&times;</span>
+            <h2>관계 선택</h2>
+            <label><input type="checkbox" onclick="selectOption('relationship-button', '친구')"> 친구</label><br>
+            <label><input type="checkbox" onclick="selectOption('relationship-button', '연인')"> 연인</label><br>
+            <label><input type="checkbox" onclick="selectOption('relationship-button', '가족')"> 가족</label><br>
+            <label><input type="checkbox" onclick="selectOption('relationship-button', '동료')"> 동료</label><br>
+        </div>
+    </div>
+    <!-- 모달 영역 끝 -->
+
+    <script src="./write.js"></script>
+</body>
+</html>
