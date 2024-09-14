@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뱃지</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/shared.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/badge.css')}}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="{{ url_for('my') }}" class="back-button">←</a>
+        <h1>뱃지</h1>
+      </header>
+      <main>
+        <div class="items-section">
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>서울</p>
+            </div>
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>부산</p>
+            </div>
+          </div>
+        
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>인천</p>
+            </div>
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>대전</p>
+            </div>
+          </div>
+        
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>대구</p>
+            </div>
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>울산</p>
+            </div>
+          </div>
+        
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>광주</p>
+            </div>
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"></div>
+              <p>제주</p>
+            </div>
+          </div>
+        </div>
+        
+        <section class="bottom"></section>
+      </main>
+      <footer>
+        <div class="footer-menu">
+            <a href="{{ url_for('write') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+            </a>
+            <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('save') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+            </a>
+            <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+            <a href="" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+            </a>
+            <span>홈</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('my') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+            </a>
+            <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+            <a href="" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+            </a>
+            <span>설정</span>
+        </div>
+    </footer>
+    </div>
+  </body>
+</html>

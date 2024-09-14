@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>내 여행</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/my.css')}}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>내 여행</h1>
+      </header>
+      <div class="character-section">
+        <div class="character-avatar">
+          <div
+            class="avatar-placeholder"
+            style="background-image: url('{{url_for('static', filename='image/캐릭터.png')}}');"
+          ></div>
+        </div>
+        <div class="character-info">
+          <p>당신의 캐릭터</p>
+        </div>
+      </div>
+
+      <div class="character-image-section">
+        <div class="row">
+          <div class="box">
+            <div
+              class="image"
+              style="background-image: url('{{url_for('static', filename='image/캐릭터.png')}}');"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="items-section">
+        <a href="{{ url_for('deco') }}">
+          <h2>악세사리</h2>
+          <div class="deco-row">
+            <div class="deco-box">
+              <div
+                class="deco-image"
+                style="background-image: url('{{url_for('static', filename='image/귤_스티커.png')}}');"
+              ></div>
+              <p>귤 모자</p>
+            </div>
+            <div class="deco-box">
+              <div
+                class="deco-image"
+                style="background-image: url('{{url_for('static', filename='image/사과_스티커.png')}}');"
+              ></div>
+              <p>사과 모자</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="{{ url_for('badge') }}">
+          <h2>뱃지</h2>
+          <div class="badge-row">
+            <div class="badge-box">
+              <div
+                class="badge-image"
+                style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"
+              ></div>
+              <p>서울</p>
+            </div>
+            <div class="badge-box">
+              <div
+                class="badge-image"
+                style="background-image: url('{{url_for('static', filename='image/stamp.png')}}');"
+              ></div>
+              <p>부산</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="{% if posts %}{{ url_for('mypost') }}{% else %}javascript:void(0);{% endif %}" 
+        class="bottom" {% if not posts %}onclick="alert('게시물이 없습니다');"{% endif %}>
+          <h2>내 게시물</h2>
+          <section class="recommendations">
+            <div class="recommendation-cards">
+              {% if posts %} {% for post in posts %}
+              <div class="card">
+                <img
+                  src="{{url_for('static',filename=post['image_path'])}}"
+                  alt="멋진 사진"
+                  class="card-img"
+                />
+                <div class="card-content">
+                  <p class="location">지역: {{ post['tags']['region'] }}</p>
+                  <p class="author">
+                    여행 유형: {{ post['tags']['travel_type'] }}
+                  </p>
+                </div>
+              </div>
+              {% endfor %} {% else %}
+              <p>게시물이 없습니다</p>
+              {% endif %}
+            </div>
+          </section>
+        </a>
+      </div>
+      <section class="bottom"></section>
+      <footer>
+        <div class="footer-menu">
+          <a href="{{ url_for('write') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{url_for('static', filename='image/write.png')}}"
+              alt="글쓰기아이콘"
+            />
+          </a>
+          <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('save') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{url_for('static', filename='image/save.png')}}"
+              alt="저장됨아이콘"
+            />
+          </a>
+          <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+          <a href="" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{url_for('static', filename='image/home.png')}}"
+              alt="홈아이콘"
+            />
+          </a>
+          <span>홈</span>
+        </div>
+
+        <div class="footer-menu">
+          <a href="{{ url_for('my') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{url_for('static', filename='image/my.png')}}"
+              alt="내여행아이콘"
+            />
+          </a>
+          <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+          <a href="" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{url_for('static', filename='image/setting.png')}}"
+              alt="설정아이콘"
+            />
+          </a>
+          <span>설정</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

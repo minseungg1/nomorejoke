@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>악세사리</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/shared.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/deco.css')}}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="{{ url_for('my') }}" class="back-button">←</a>
+        <h1>악세사리</h1>
+      </header>
+      <main>
+        <div class="character-image-section">
+          <div class="row">
+            <div class="box">
+              <div class="image"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="items-section">
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/밀짚모자_스티커.png')}}');"></div>
+              <p>밀짚 모자</p>
+              <button class="hat1" onclick="hat1Img">선택</button>
+            </div>
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/당근_스티커.png')}}');"></div>
+              <p>당근 모자</p>
+              <button class="hat2" onclick="hat2Img">선택</button>
+            </div>
+          </div>
+        
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/사과_스티커.png')}}');"></div>
+              <p>사과 모자</p>
+              <button class="hat3" onclick="hat3Img">선택</button>
+            </div>
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/귤_스티커.png')}}');"></div>
+              <p>귤 모자</p>
+              <button class="hat4" onclick="hat4Img">선택</button>
+            </div>
+          </div>
+        
+          <div class="item-row">
+            <div class="item-box">
+              <div class="item-image" style="background-image: url('{{url_for('static', filename='image/왕관_스티커.png')}}');"></div>
+              <p>왕관 모자</p>
+              <button class="hat5" onclick="hat5Img">선택</button>
+            </div>
+            <div class="item-box">
+              <div class="item-image"></div>
+              <p>추후 출시 예정</p>
+            </div>
+          </div>
+        </div>
+        
+          <div class="buttons-section">
+            <button class="reset-button" onclick="resetImg">초기화</button>
+            <button class="apply-button">적용</button>
+          </div>
+        </div>
+        
+      </main>
+      <footer>
+        <div class="footer-menu">
+            <a href="{{ url_for('write') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+            </a>
+            <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('save') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+            </a>
+            <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+            <a href="" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+            </a>
+            <span>홈</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('my') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+            </a>
+            <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+            <a href="" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+            </a>
+            <span>설정</span>
+        </div>
+    </footer>
+      
+    </div>
+    <script src="{{ url_for('static', filename='js/deco.js') }}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post</title>
+    <!-- CSS 파일 연결 -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/myPostDetail.css') }}"
+    />
+  </head>
+  <body>
+    <!-- 컨테이너 안에 헤더 영역: 사용자 프로필, 해시태그, 검색 바 -->
+    <main class="container">
+      <header>
+        <a href="{{ url_for('mypost') }}">
+          <img
+            class="back-return"
+            src="{{ url_for('static', filename='image/back-arrow.png') }}"
+            alt="뒤로가기버튼"
+          />
+        </a>
+      </header>
+
+      <!-- 메인 콘텐츠 영역 -->
+      <div class="post">
+        <div class="post-header">
+          <div class="profile">
+            <div class="profile-img"></div>
+            <span class="username">{{ post.username }}</span>
+            <!-- 사용자명 표시 -->
+          </div>
+        </div>
+        <div class="author-info">
+          <span class="text-time">{{ post.location }}</span>
+          <!-- 위치 표시 -->
+        </div>
+
+        <!-- 이미지 영역 (실제 이미지가 들어갈 수 있는 공간) -->
+        <div class="post-image">
+          <img
+            src="data:image/jpeg;base64,{{ post.image_data }}"
+            alt="{{ post.image_filename }}"
+            class="image-content"
+          />
+          <!-- 이미지 표시 -->
+        </div>
+
+        <div class="post-footer">
+          <div class="tags">
+            <div class="tags-left">
+              {% for tag in post.tags %}
+              <span class="tag">#{{ tag }}</span>
+              <!-- 태그 표시 -->
+              {% endfor %}
+            </div>
+            <div class="tags-right">
+              <span class="post-icon">
+                <img
+                  id="like-button"
+                  class="like-button"
+                  src="{{ url_for('static', filename='image/like.png') }}"
+                  alt="좋아요아이콘"
+                  onclick="likePost('{{post._id}}')"
+                />
+              </span>
+              <span id="like-count">{{post.likes or 0}}</span>
+              <!-- 좋아요 수 표시-->
+              <span class="post-icon">
+                <img
+                  class="stored-button"
+                  src="{{ url_for('static', filename='image/store.png') }}"
+                  alt="게시물저장아이콘"
+                  onclick="savePost('{{ post._id }}')"
+                />
+              </span>
+            </div>
+          </div>
+          <span class="content">
+            {{ post['content'] }}
+            <!-- 게시물 내용 표시 -->
+          </span>
+
+          <div class="comments-section">
+            <!-- <h5>댓글</h5> -->
+            <!-- 댓글 입력 폼 -->
+            <form
+              action="{{ url_for('add_comment', post_id=post._id) }}"
+              method="POST"
+              class="comment-form"
+            >
+              <textarea
+                name="comment"
+                placeholder="댓글을 입력하세요..."
+                required
+              ></textarea>
+              <button type="submit">댓글 달기</button>
+            </form>
+
+            <!-- 기존 댓글 목록 -->
+            <div class="existing-comments">
+              {% for comment in post.comments %}
+              <div class="comment">
+                <span class="comment-user">{{ comment.username }}</span>
+                <p class="comment-text">{{ comment.text }}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <form action="{{ url_for('delete_post', post_id=post._id) }}" class="actions" method="POST">
+          <button type="button" class="delete-button" onclick="deletePost('{{ post._id }}')">삭제하기</button>
+      </form>      
+      </div>
+    </main>
+
+    <!-- 하단 네비게이션 바 -->
+    <footer>
+      <div class="footer-menu">
+        <a href="{{ url_for('write') }}" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="{{ url_for('static', filename='image/write.png') }}"
+            alt="글쓰기아이콘"
+          />
+        </a>
+        <span>글쓰기</span>
+      </div>
+      <div class="footer-menu">
+        <a href="{{ url_for('save') }}" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="{{ url_for('static', filename='image/save.png') }}"
+            alt="저장됨아이콘"
+          />
+        </a>
+        <span>저장됨</span>
+      </div>
+      <div class="footer-menu">
+        <a href="" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="{{ url_for('static', filename='image/home.png') }}"
+            alt="홈아이콘"
+          />
+        </a>
+        <span>홈</span>
+      </div>
+
+      <div class="footer-menu">
+        <a href="{{ url_for('my') }}" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="{{ url_for('static', filename='image/my.png') }}"
+            alt="내여행아이콘"
+          />
+        </a>
+        <span>내 여행</span>
+      </div>
+      <div class="footer-menu">
+        <a href="" class="post-link">
+          <img
+            class="footer-menu-icon"
+            src="{{ url_for('static', filename='image/setting.png') }}"
+            alt="설정아이콘"
+          />
+        </a>
+        <span>설정</span>
+      </div>
+    </footer>
+
+    <script>
+      // URL 변수를 JavaScript에 할당
+      const likeImageUrl = "{{ url_for('static', filename='image/like.png') }}";
+      const likeClickedImageUrl =
+        "{{ url_for('static', filename='like_clicked.png') }}";
+      const storeImageUrl = "{{ url_for('static', filename='image/store.png') }}";
+      const storedImageUrl = "{{ url_for('static', filename='image/stored.png') }}";
+
+      function toggleIcon(element, newSrc, originalSrc) {
+        const currentSrc = element.src.split("/").pop(); // 현재 src의 파일명만 추출
+        const newSrcFile = newSrc.split("/").pop(); // 새로운 이미지의 파일명만 추출
+        const originalSrcFile = originalSrc.split("/").pop(); // 원래 이미지의 파일명만 추출
+
+        if (currentSrc === newSrcFile) {
+          element.src = originalSrc; // 원래 이미지로 변경
+        } else {
+          element.src = newSrc; // 새로운 이미지로 변경
+        }
+      }
+      function likePost(postId) {
+        const likeButton = document.getElementById("like-button");
+        const likeCount = document.getElementById("like-count");
+        const storeImageUrl = "{{ url_for('static', filename='image/store.png') }}";
+        const storedImageUrl = "{{ url_for('static', filename='image/stored.png') }}";
+        const userId = "exampleUserId";
+
+        fetch(`/like/${postId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: userId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.likes !== undefined) {
+              likeCount.textContent = data.likes;
+              if (data.liked_by_user) {
+                likeButton.src =
+                  "{{ url_for('static', filename='image/like_clicked.png') }}";
+              } else {
+                likeButton.src = "{{ url_for('static', filename='image/like.png') }}";
+              }
+            } else {
+              alert("좋아요 업데이트 중 오류가 발생했습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+      // function savePost(postId) {
+      //   // 이미지 저장 아이콘 요소를 가져옴
+      //   const saveButton = document.querySelector(".stored-button");
+
+      //   // 현재 이미지가 store.png인지 확인
+      //   if (saveButton.src.includes("store.png")) {
+      //     // store.png라면 stored.png로 변경
+      //     saveButton.src = storedImageUrl;
+      //   } else {
+      //     // stored.png라면 store.png로 변경
+      //     saveButton.src = storeImageUrl;
+      //   }
+      // }
+      function savePost(postId) {
+        fetch(`/save_post/${postId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.saved !== undefined) {
+              const saveButton = document.querySelector(".stored-button");
+              if (data.saved) {
+                saveButton.src =
+                  "{{ url_for('static', filename='image/stored.png') }}";
+              } else {
+                saveButton.src =
+                  "{{ url_for('static', filename='image/store.png') }}";
+              }
+            } else {
+              alert("저장 중 오류가 발생했습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+      function deletePost(postId) {
+    if (confirm('정말로 이 게시물을 삭제하시겠습니까?')) {
+        fetch(`/delete_post/${postId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('게시물이 성공적으로 삭제되었습니다.');
+                window.location.href = '/mypost'; // 게시물 목록 페이지로 리다이렉트
+            } else {
+                alert('게시물 삭제에 실패했습니다.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('게시물 삭제 중 오류가 발생했습니다.');
+        });
+    }
+}
+
+    </script>
+  </body>
+</html>

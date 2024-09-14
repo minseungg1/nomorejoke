@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 게시물</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/shared.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/mypost.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{{ url_for('my') }}" class="back-button">←</a>
+            <h1>내 게시물</h1>
+        </header>   
+        <main>
+            <section class="recommendations">
+                <div class="recommendation-cards">
+                    {% for post in posts %}
+                    <a href="{{ url_for('view_mypost', post_id=post['_id']) }}">
+                        <div class="card">
+                            <img src="{{url_for('static',filename=post['image_path'])}}" alt="멋진 사진" class="card-img">
+                            <div class="card-content">
+                                <p class="review">
+                                    내용: {{ post['content'][:20] }}{% if post['content']|length > 20 %}...{% endif %}
+                                </p>
+                                <p class="location">지역: {{ post['tags']['region'] }}</p>
+                                <p class="author">여행 유형: {{ post['tags']['travel_type'] }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="bottom"></section>
+        </main>
+        <footer>
+            <!-- Footer Content -->
+        </footer>
+    </div>
+</body>
+</html>
+
+      <footer>
+        <div class="footer-menu">
+            <a href="{{ url_for('write') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/write.png') }}" alt="글쓰기아이콘"/>
+            </a>
+            <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('save') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/save.png') }}" alt="저장됨아이콘"/>
+            </a>
+            <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+            <a href="" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/home.png') }}" alt="홈아이콘"/>
+            </a>
+            <span>홈</span>
+        </div>
+        <div class="footer-menu">
+            <a href="{{ url_for('my') }}" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/my.png') }}" alt="내여행아이콘"/>
+            </a>
+            <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+            <a href="" class="post-link">
+                <img class="footer-menu-icon" src="{{ url_for('static', filename='image/setting.png') }}" alt="설정아이콘"/>
+            </a>
+            <span>설정</span>
+        </div>
+    </footer>
+    </div>
+  </body>
+</html>
