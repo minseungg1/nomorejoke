@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='search.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="profile">
+          <img
+            src="{{ url_for('static', filename='profile.png') }}"
+            alt="Profile Image"
+            class="profile-image"
+          />
+          <span class="username">{{ user_name }}</span>
+        </div>
+
+        <form action="{{ url_for('search') }}" method="GET">
+          <div class="search-bar-wrapper">
+            <input
+              type="text"
+              class="search-bar"
+              name="query"
+              placeholder="‘000’을 검색해보세요"
+            />
+            <button type="submit" class="search-button">
+              <span class="search-button-text">search</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <main>
+        <h2>검색결과</h2>
+        <!-- 포스트 반복문 출력-->
+        {% for post in posts %}
+        <a href="{{ url_for('post', post_id=post['_id']) }}" class="post-link">
+          <div class="post-item">
+            <div class="post-header">
+              <span class="post-author">{{ post.username }}</span>
+              <span class="post-time">{{ post.location }}</span>
+            </div>
+            <div class="image-placeholder">
+              <img
+                src="data:image/jpeg;base64,{{ post.image_data }}"
+                alt="게시물 이미지"
+                class="post_image"
+              />
+            </div>
+            <div class="post-content">{{ post.post_content }}</div>
+            <div class="post-footer">
+              {% for tag in post.tags %}
+              <span>#{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </main>
+      <footer>
+        <div class="footer-menu">
+          <a href="{{ url_for('write') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='write.png') }}"
+              alt="글쓰기아이콘"
+            />
+          </a>
+          <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('save_posts') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='save.png') }}"
+              alt="저장됨아이콘"
+            />
+          </a>
+          <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('home') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='home.png') }}"
+              alt="홈아이콘"
+            />
+          </a>
+          <span>홈</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('my') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='my.png') }}"
+              alt="내여행아이콘"
+            />
+          </a>
+          <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('setting') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='setting.png') }}"
+              alt="설정아이콘"
+            />
+          </a>
+          <span>설정</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
