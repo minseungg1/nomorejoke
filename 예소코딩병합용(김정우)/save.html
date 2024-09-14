@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <style>
+    /* 한 줄에 두 개의 카드가 배치되도록 설정 */
+    /* .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -10px;
+    }
+
+    .col {
+      flex: 1 0 50%;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+    } */
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>저장됨</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='shared.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='save.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>저장된 여행</h1>
+      </header>
+      <main>
+        <section class="recommendations">
+          <div class="recommendation-cards">
+            <div class="row">
+              {% for post in posts %}
+              <div class="col">
+                <a href="{{ url_for('post', post_id=post['_id']) }}" class="post-link">
+                  <div class="card">
+                    <img
+                      src="data:image/jpeg;base64,{{ post.image_data }}"
+                      alt="멋진 사진"
+                      class="card-img"
+                    />
+                    <div class="card-content">
+                      <p class="review"> {{ post.content }}</p>
+                      <p class="location">{{ post.location }}</p>
+                      <p class="author">작성자: {{ post.username }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% if loop.index is divisibleby 2 and not loop.last %}
+            </div>
+            <div class="row">
+              {% endif %} {% else %}
+              <p>저장된 게시물이 없습니다.</p>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="footer-menu">
+          <a href="{{ url_for('write') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='write.png') }}"
+              alt="글쓰기아이콘"
+            />
+          </a>
+          <span>글쓰기</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('save_posts') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='save.png') }}"
+              alt="저장됨아이콘"
+            />
+          </a>
+          <span>저장됨</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('home') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='home.png') }}"
+              alt="홈아이콘"
+            />
+          </a>
+          <span>홈</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('my') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='my.png') }}"
+              alt="내여행아이콘"
+            />
+          </a>
+          <span>내 여행</span>
+        </div>
+        <div class="footer-menu">
+          <a href="{{ url_for('setting') }}" class="post-link">
+            <img
+              class="footer-menu-icon"
+              src="{{ url_for('static', filename='setting.png') }}"
+              alt="설정아이콘"
+            />
+          </a>
+          <span>설정</span>
+        </div>
+      </footer>
+    </div>
+    <script></script>
+  </body>
+</html>

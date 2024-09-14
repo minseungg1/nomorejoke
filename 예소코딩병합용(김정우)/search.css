@@ -1,0 +1,262 @@
+/* Pretendard-Bold 폰트 추가 */
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 공통 스타일 */
+body {
+    font-family: 'Pretendard-Bold', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9fb;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    overflow: auto;
+    color: #333;
+}
+
+.post-link {
+    text-decoration: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 10px; /* 사용자명과 검색창 사이의 간격 */
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* 오른쪽 패딩을 더 넓게 하여 X 버튼을 위한 공간 확보 */
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.9em;
+    background-color: #f6f6f6; /* Light background */
+    outline: none;
+    line-height: 1.5; /* 높이와 텍스트 라인을 조절 */
+}
+
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.search-bar {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #3753FF;
+}
+.search-bar-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 360px; /* 검색창의 최대 너비 설정 */
+    padding: 10px 40px 10px 10px; /* 오른쪽 패딩을 더 넓게 하여 X 버튼을 위한 공간 확보 */
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #3753FF; /* 포커스 시 파란색 테두리 */
+}
+
+.search-button {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.search-button-text {
+    text-align: center;
+}
+
+
+/* 검색결과 스타일 */
+main {
+    padding: 10px;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* 포스트 스타일 (홈의 추천게시물과 동일하게 설정) */
+.post-item {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.post-author {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.post-time {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.image-placeholder {
+    background-color: #ddd;
+    color: #999;
+    font-size: 1em;
+    height: 200px;  /* 고정 높이 설정 */
+    width: 100%;  /* 부모 요소의 너비에 맞게 설정 */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  /* 자식 요소가 부모 요소를 넘어갈 경우 숨김 */
+    position: relative;  /* 자식 요소의 절대 위치를 기준으로 설정 */
+}
+
+.post_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* 이미지 비율을 유지하면서 크기에 맞게 자르기 */
+    position: absolute;  /* 부모 요소 내에서 절대 위치 */
+    top: 0;
+    left: 0;
+}
+
+
+.post-content {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 10px;
+}
+
+.post-footer {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #888;
+    font-weight: bold;
+}
+
+/* footer */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #888;
+    font-size: 0.5em;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.footer-menu-icon {
+    height: 25px;
+    width: 25px;
+}
+
+.footer-menu span {
+    font-size: 0.8em;
+    margin-top: 3px;
+    font-weight: bold;
+}
